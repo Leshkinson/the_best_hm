@@ -3,7 +3,7 @@ import {VideosType} from "./types";
 export let arrDataVideos: Array<VideosType> = [
     {
         "id": '1',
-        "title": "It is really funny video2",
+        "title": "It is really funny video22",
         "author": "Jim Carry",
         "canBeDownloaded": true,
         "minAgeRestriction": null,
@@ -50,3 +50,15 @@ export let arrDataVideos: Array<VideosType> = [
         ]
     },
 ]
+
+export const removeAllStartDate = () => {
+    arrDataVideos = []
+}
+
+export const changeStartDate = (data: any) => {
+    arrDataVideos = data
+}
+
+export const addedNewVideo = (video: any) => {
+    arrDataVideos.push(video)
+}
