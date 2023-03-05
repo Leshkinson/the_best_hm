@@ -4,7 +4,7 @@ import {HTTP_STATUSES} from "../src/http_statuses";
 import {isValidBodyVideo} from "../src/validators";
 import {BodyPutVideo, VideosType} from "../src/types";
 import {ERRORS} from "../src/ENUM";
-import {arrDataVideos} from "../src/data";
+import {controlData} from "../src/data";
 
 const testDataForPut = {
     "title": 'Karl Marx',
@@ -32,7 +32,7 @@ describe('/videos', () => {
     it('GET, should return videos[]', async () => {
         await request(app)
             .get('/videos')
-            .expect(HTTP_STATUSES.OK200, [...arrDataVideos])
+            .expect(HTTP_STATUSES.OK200, [...controlData.getAllVideos()])
     })
 
     it('POST, trying to create a video without an author', async () => {
@@ -76,13 +76,12 @@ describe('/videos', () => {
             .send(testDataForPut)
             .expect(HTTP_STATUSES.NO_CONTENT)
 
-
-        expect(arrDataVideos.filter(el => el.id === '4')[0].title).toBe("Karl Marx")
+        expect(controlData.getAllVideos().filter(el => el.id === '4')[0].title).toBe("Karl Marx")
 
     })
 
     it('DELETE, trying remove video with wrong id', async () => {
-        const arrLength = arrDataVideos.length
+        const arrLength = controlData.getAllVideos().length
         await request(app)
             .delete('/videos/' + 111)
             .send(testDataForPut)
@@ -99,5 +98,4 @@ describe('/videos', () => {
             .send(testDataForPut)
             .expect(HTTP_STATUSES.NO_CONTENT)
     })
-
 })
