@@ -59,6 +59,8 @@ export const controlData = {
         return arrDataVideos.find((it) => it.id === id)
     },
     createNewVideo(body: VideosType) {
+        let tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate()+1);
         const newVideo = {
             id: (+(new Date())).toString(),
             title: body.title,
@@ -66,7 +68,7 @@ export const controlData = {
             canBeDownloaded: false,
             minAgeRestriction: null,
             createdAt: new Date().toISOString(),
-            publicationDate: new Date().toISOString(),
+            publicationDate: tomorrow.toISOString(),
             availableResolutions: body.availableResolutions
         }
         arrDataVideos.push(newVideo)
