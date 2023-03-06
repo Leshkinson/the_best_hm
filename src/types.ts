@@ -12,7 +12,7 @@ export type BodyPutVideo = {
     "publicationDate": string
 }
 export type VideosType = {
-    id: string
+    id: number
     title: string
     author: string
     canBeDownloaded: boolean

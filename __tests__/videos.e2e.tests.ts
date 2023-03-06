@@ -81,7 +81,7 @@ describe('/videos', () => {
             .send(testDataForPut)
             .expect(HTTP_STATUSES.NO_CONTENT)
 
-        expect(controlData.getAllVideos().filter(el => el.id === '4')[0].title).toBe("Karl Marx")
+        expect(controlData.getAllVideos().filter(el => el.id === 4)[0].title).toBe("Karl Marx")
 
     })
 

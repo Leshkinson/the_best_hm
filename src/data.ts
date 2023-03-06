@@ -2,7 +2,7 @@ import {VideosType} from "./types";
 
 export let arrDataVideos: Array<VideosType> = [
     {
-        "id": '1',
+        "id": 1,
         "title": "It is really funny video22",
         "author": "Jim Carry",
         "canBeDownloaded": true,
@@ -14,7 +14,7 @@ export let arrDataVideos: Array<VideosType> = [
         ]
     },
     {
-        "id": '2',
+        "id": 2,
         "title": "It is really crazy video",
         "author": "Ben Aflek",
         "canBeDownloaded": true,
@@ -26,7 +26,7 @@ export let arrDataVideos: Array<VideosType> = [
         ]
     },
     {
-        "id": '3',
+        "id": 3,
         "title": "It is really strange video",
         "author": "Giliermo Deltoro",
         "canBeDownloaded": true,
@@ -38,7 +38,7 @@ export let arrDataVideos: Array<VideosType> = [
         ]
     },
     {
-        "id": '4',
+        "id": 4,
         "title": "It is really mystic video",
         "author": "Giliermo Deltoro",
         "canBeDownloaded": true,
@@ -56,13 +56,13 @@ export const controlData = {
         return arrDataVideos
     },
     getVideoById(id: string) {
-        return arrDataVideos.find((it) => it.id === id)
+        return arrDataVideos.find((it) => it.id.toString() === id)
     },
     createNewVideo(body: VideosType) {
         let tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate()+1);
         const newVideo = {
-            id: (+(new Date())).toString(),
+            id: +(new Date()),
             title: body.title,
             author: body.author,
             canBeDownloaded: false,
@@ -75,7 +75,7 @@ export const controlData = {
         return newVideo
     },
     changeVideo(id: string, body: VideosType) {
-        let video = arrDataVideos.find(it => it.id === id)
+        let video = arrDataVideos.find(it => it.id.toString() === id)
         if (video) {
             video.title = body.title
             video.author = body.author
@@ -86,8 +86,8 @@ export const controlData = {
         }
     },
     deleteVideoById(id: string) {
-        if (arrDataVideos.find(it => it.id === id)) {
-            arrDataVideos = arrDataVideos.filter(it => it.id !== id)
+        if (arrDataVideos.find(it => it.id.toString() === id)) {
+            arrDataVideos = arrDataVideos.filter(it => it.id.toString() != id)
             return true
         } else {
             return false
