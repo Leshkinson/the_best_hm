@@ -66,7 +66,7 @@ export const controlData = {
             canBeDownloaded: false,
             minAgeRestriction: null,
             createdAt: new Date().toISOString(),
-            publicationDate: "2023-03-02T10:43:11.595Z",
+            publicationDate: new Date().toISOString(),
             availableResolutions: body.availableResolutions
         }
         arrDataVideos.push(newVideo)
