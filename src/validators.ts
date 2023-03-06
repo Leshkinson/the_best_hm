@@ -78,5 +78,5 @@ export const isValidBodyVideo = (body: BodyPutVideo, method: string) => {
         }
         checkDate(publicationDate, 'publicationDate', errorsMessages)
     }
-    return errorsMessages
+    return { errorsMessages: errorsMessages }
 }

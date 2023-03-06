@@ -40,7 +40,7 @@ describe('/videos', () => {
         await request(app)
             .post('/videos')
             .send(testDateForPost)
-            .expect(HTTP_STATUSES.BAD_REQUEST_400, [...arrErrors])
+            .expect(HTTP_STATUSES.BAD_REQUEST_400, arrErrors)
     })
 
     it('PUT, trying to change video with wrong id', async () => {
@@ -54,20 +54,25 @@ describe('/videos', () => {
         await request(app)
             .put('/videos/' + 4)
             .send({...testDataForPut, title: 213})
-            .expect(HTTP_STATUSES.BAD_REQUEST_400, [{
-                message: ERRORS.InvalidDatType,
-                field: "title"
-            }])
+            .expect(HTTP_STATUSES.BAD_REQUEST_400, {
+                errorsMessages:
+                    [{
+                        message: ERRORS.InvalidDatType,
+                        field: "title"
+                    }]
+            })
     })
 
     it('PUT, trying to change video with empty availableResolutions', async () => {
         await request(app)
             .put('/videos/' + 4)
             .send({...testDataForPut, availableResolutions: []})
-            .expect(HTTP_STATUSES.BAD_REQUEST_400, [{
-                message: ERRORS.EmptyArray,
-                field: "availableResolutions"
-            }])
+            .expect(HTTP_STATUSES.BAD_REQUEST_400, {
+                errorsMessages: [{
+                    message: ERRORS.EmptyArray,
+                    field: "availableResolutions"
+                }]
+            })
     })
 
     it('PUT, successful video change', async () => {

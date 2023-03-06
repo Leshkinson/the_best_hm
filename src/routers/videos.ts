@@ -31,7 +31,7 @@ videosRouter.delete('/:id', (req: Request, res: Response) => {
 //-------------------POST---------------//
 videosRouter.post('/', (req: Request, res: Response) => {
     const arrErrors = isValidBodyVideo(req.body, 'POST')
-    if (arrErrors.length) {
+    if (arrErrors.errorsMessages.length) {
         res.status(HTTP_STATUSES.BAD_REQUEST_400).send(arrErrors)
     } else {
         const newVideo = controlData.createNewVideo(req.body)
@@ -45,7 +45,7 @@ videosRouter.put('/:id', (req: Request, res: Response) => {
     let video = controlData.getVideoById(req.params.id)
     if (video) {
         const arrErrors = isValidBodyVideo(req.body, 'PUT')
-        if (arrErrors.length) {
+        if (arrErrors.errorsMessages.length) {
             res.status(HTTP_STATUSES.BAD_REQUEST_400).send(arrErrors)
             return
         }
