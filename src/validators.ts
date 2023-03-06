@@ -76,6 +76,7 @@ export const isValidBodyVideo = (body: BodyPutVideo, method: string) => {
                 field: "minAgeRestriction"
             })
         }
+        checkType(publicationDate, "publicationDate", 'string', errorsMessages)
         checkDate(publicationDate, 'publicationDate', errorsMessages)
     }
     return { errorsMessages: errorsMessages }

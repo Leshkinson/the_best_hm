@@ -65,7 +65,7 @@ export const controlData = {
             author: body.author,
             canBeDownloaded: false,
             minAgeRestriction: null,
-            createdAt: new Date().toString(),
+            createdAt: new Date().toISOString(),
             publicationDate: "2023-03-02T10:43:11.595Z",
             availableResolutions: body.availableResolutions
         }
